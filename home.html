@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SheReads | Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff5f9;
+      color: #333;
+    }
+
+    /* Navigation bar */
+    .topnav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to right, #ffe6f0, #ffd6e8);
+      padding: 12px 30px;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .brand img {
+      height: 36px;
+      width: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #cc2b5e;
+    }
+    .site-name {
+      font-family: 'Great Vibes', cursive;
+      font-size: 24px;
+      color: #cc2b5e;
+      font-weight: bold;
+    }
+    .topnav a, .dropbtn {
+      text-decoration: none;
+      color: #e75480;
+      font-weight: bold;
+      font-size: 16px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #fff0f5;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      z-index: 1001;
+      min-width: 180px;
+      text-align: left;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px 16px;
+      color: #cc2b5e;
+      text-decoration: none;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .user-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #cc2b5e;
+    }
+
+    .logout-btn {
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(to right, #e75480, #cc2b5e);
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+    }
+
+   /* Header section */
+header {
+  background: url('header.jpg') center center / cover no-repeat;
+  padding: 50px 20px 70px;
+  text-align: center;
+  color: white;
+  position: relative;
+  margin-top: 60px; /* space for navbar */
+}
+
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 64px;
+      margin: 0;
+      text-shadow: 2px 2px 6px #cc2b5e;
+    }
+
+    .quote-box {
+      margin-top: 20px;
+      font-size: 20px;
+      font-style: italic;
+      background: rgba(255, 240, 245, 0.85);
+      color: #cc2b5e;
+      display: inline-block;
+      padding: 12px 20px;
+      border-left: 6px solid #e75480;
+      border-radius: 10px;
+      max-width: 600px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+   /* Dashboard */
+    .dashboard-title {
+      font-size: 28px;
+      color: #e75480;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .dashboard-card {
+      background-color: #fff0f5;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .dashboard-card h3 {
+      color: #cc2b5e;
+    }
+    .dashboard-card p {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .dashboard-card a {
+      display: inline-block;
+      padding: 8px 14px;
+      background-color: #cc2b5e;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .dashboard-card a:hover {
+      background-color: #e75480;
+    }
+
+    /* Book Gallery */
+    .book-gallery {
+      max-width: 100%;
+      padding: 0 20px;
+      overflow-x: auto;
+    }
+    .book-gallery h2 {
+      font-size: 32px;
+      color: #cc2b5e;
+      margin: 30px 0;
+      text-align: center;
+    }
+    .book-row {
+      display: flex;
+      gap: 30px;
+      padding: 20px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .book-card {
+      flex: 0 0 180px;
+      perspective: 1000px;
+    }
+    .book-inner {
+      position: relative;
+      width: 100%;
+      padding-top: 150%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+    }
+    .book-card:hover .book-inner {
+      transform: rotateY(180deg);
+    }
+    .book-front, .book-back {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .book-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .book-back {
+      background: #fff0f5;
+      transform: rotateY(180deg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+    }
+    .back-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+    }
+    .back-content img {
+      max-width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .read-button {
+      background: linear-gradient(to right, #e75480, #cc2b5e);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .read-button:hover {
+      background: #cc2b5e;
+    }
+
+     .site-footer {
+  background: #6e0235;
+  color: #f2e9f0;
+  padding: 20px 20px 10px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: auto;
+  gap: 20px;
+}
+
+.footer-section {
+  flex: 1 1 200px;
+}
+
+.footer-section h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #ff99cc;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 6px;
+}
+
+.footer-section a {
+  color: #f2e9f0;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-section a:hover {
+  color: #ff99cc;
+}
+
+/* Social media section */
+.footer-social {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Right-align overall block */
+  text-align: center; /* Center the text itself */
+  flex: 1 1 120px;
+}
+
+.footer-social h4 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #ff99cc;
+  text-align: center;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.social-links a img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ff99cc;
+  background-color: #fff0f5;
+  padding: 6px;
+  transition: transform 0.3s;
+}
+
+.social-links a img:hover {
+  transform: scale(1.1);
+}
+
+.footer-bottom {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 12px;
+  border-top: 1px solid #a80a6c;
+  padding-top: 10px;
+}
+
+    /* mobile */
+    @media (max-width: 768px) {
+  /* NAVBAR */
+  .topnav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+  }
+
+  .nav-left, .nav-right {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    width: 100%;
+  }
+
+  .dropdown-content a {
+    padding-left: 20px;
+  }
+
+  .brand img {
+    height: 30px;
+    width: 30px;
+  }
+
+  .site-name {
+    font-size: 18px;
+  }
+
+  .logout-btn, .dropbtn {
+    width: 100%;
+    text-align: left;
+  }
+
+  /* HEADER */
+  header h1 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  header {
+    padding: 40px 20px;
+    background-position: center;
+    background-size: cover;
+  }
+
+  #quoteBox {
+    font-size: 16px;
+    padding: 12px;
+    margin-top: 20px;
+    max-width: 90%;
+  }
+
+  #loginTagline {
+    font-size: 16px;
+    margin-top: 15px;
+  }
+
+  /* FORM & CONTAINERS */
+  .form-container, .container, .faq-container {
+    padding: 20px;
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  input, textarea, button {
+    font-size: 14px;
+  }
+
+  /* DASHBOARD */
+  .dashboard-title {
+    font-size: 22px;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    padding: 0 10px;
+  }
+
+  .dashboard-card {
+    padding: 20px;
+  }
+
+  /* BOOK GALLERY */
+  .book-gallery h2 {
+    font-size: 24px;
+  }
+
+  .book-row {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+
+  .book-card {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+
+    }
+
+    #backToTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 40px;
+  left: 30px;
+  z-index: 1001;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background: linear-gradient(to right, #e75480, #cc2b5e);
+  color: white;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: 0.3s ease-in-out;
+}
+
+#backToTopBtn:hover {
+  background: #cc2b5e;
+}
+#butterfly-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.butterfly {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  animation: fly 8s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes fly {
+  0% {
+    transform: translateY(-10px) translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(50vh) translateX(30px) rotate(180deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(100vh) translateX(-30px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+  </style>
+</head>
+<!-- Back to Top Button -->
+<button onclick="scrollToTop()" id="backToTopBtn" title="Go to top">↑</button>
+
+<body>
+
+<div id="butterfly-container"></div>
+<div class="topnav">
+  <div class="nav-left">
+    <a href="home.html" class="brand">
+      <img src="logo.jpg" alt="SheReads Logo">
+      <span class="site-name">SheReads</span>
+    </a>
+    <a href="home.html">Home</a>
+    <div class="dropdown">
+      <button class="dropbtn">About Us ▾</button>
+      <div class="dropdown-content">
+        <a href="about.html">About SheReads</a>
+        <a href="team.html">Our Team</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">Services ▾</button>
+       <div class="dropdown-content">
+        <a href="https://fliphtml5.com/bookcase/iulqv/" target="_blank">E-Resources</a>
+        <a href="http://10.162.16.124:8081/" target="_blank">Koha Web-OPAC</a>
+        <a href="http://172.20.10.4:80/" target="_blank">EPrints Repository</a>
+        <a href="https://www.ncbi.nlm.nih.gov/pmc/">Other Resources</a>
+      </div>
+    </div>
+    <a href="feedback.html">Contact Us</a>
+    <a href="help&FAQ.html">Help & FAQ</a>
+  </div>
+  <div class="nav-right">
+    <a href="account.html" title="My Account">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Account" class="user-icon">
+    </a>
+    <button class="logout-btn" onclick="logoutUser()">Logout</button>
+  </div>
+</div>
+
+<!-- Header -->
+<header>
+  <h1>SheReads</h1>
+  <div class="quote-box" id="quoteBox">“Empowered women empower women.”</div>
+</header>
+
+  <!-- Dashboard -->
+  <div class="dashboard-title">Hi, what would you like to explore today?</div>
+  <div class="dashboard-grid">
+    <div class="dashboard-card">
+      <h3>💄 Skincare</h3>
+      <p>Explore beauty and skincare tips curated for every woman.</p>
+      <a href="https://www.healthline.com/health/beauty-skin-care" target="_blank">Learn</a>
+    </div>
+    <div class="dashboard-card">
+      <h3>👗 Fashion</h3>
+      <p>Discover modern modest fashion inspirations and trends.</p>
+      <a href="https://www.zalora.com.my/blog/category/fashion/styling-tips/" target="_blank">Explore</a>
+    </div>
+    <div class="dashboard-card">
+      <h3>🩺 Healthcare</h3>
+      <p>Stay informed on women's health and wellness essentials.</p>
+      <a href="https://www.webmd.com/women/default.htm" target="_blank">Read</a>
+    </div>
+    <div class="dashboard-card">
+      <h3>🍳 Cooking Recipes</h3>
+      <p>Try out healthy and tasty recipes perfect for every woman.</p>
+      <a href="https://saji.my/" target="_blank">Cook</a>
+    </div>
+  </div>
+
+  <!-- Book Gallery -->
+  <section class="book-gallery">
+    <h2>Our Featured Collections</h2>
+    <div class="book-row">
+      <!-- Book 1 -->
+      <div class="book-card">
+        <div class="book-inner">
+          <div class="book-front"><img src="b1.PNG" alt="Book 1"></div>
+          <div class="book-back">
+            <div class="back-content">
+              <img src="b1b.PNG" alt="Book 1 Back">
+              <a href="https://online.fliphtml5.com/kttya/kyyl/index.html#p=1" target="_blank" class="read-button">📖 Read</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Book 2 -->
+      <div class="book-card">
+        <div class="book-inner">
+          <div class="book-front"><img src="b2.PNG" alt="Book 2"></div>
+          <div class="book-back">
+            <div class="back-content">
+              <img src="b2.PNG" alt="Book 2 Back">
+              <a href="https://online.fliphtml5.com/kttya/ikpx/index.html#p=1" target="_blank" class="read-button">📖 Read</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Book 3 -->
+      <div class="book-card">
+        <div class="book-inner">
+          <div class="book-front"><img src="b3.PNG" alt="Book 3"></div>
+          <div class="book-back">
+            <div class="back-content">
+              <img src="b3.PNG" alt="Book 3 Back">
+              <a href="https://online.fliphtml5.com/kttya/efsj/index.html#p=1" target="_blank" class="read-button">📖 Read</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Book 4 -->
+      <div class="book-card">
+        <div class="book-inner">
+          <div class="book-front"><img src="b4.PNG" alt="Book 4"></div>
+          <div class="book-back">
+            <div class="back-content">
+              <img src="b4.PNG" alt="Book 4 Back">
+              <a href="https://online.fliphtml5.com/kttya/gicx/index.html#p=1" target="_blank" class="read-button">📖 Read</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Book 5 -->
+      <div class="book-card">
+        <div class="book-inner">
+          <div class="book-front"><img src="b5.PNG" alt="Book 5"></div>
+          <div class="book-back">
+            <div class="back-content">
+              <img src="b5b.PNG" alt="Book 5 Back">
+              <a href="https://online.fliphtml5.com/kttya/aohr/index.html#p=1" target="_blank" class="read-button">📖 Read</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Book 6 -->
+      <div class="book-card">
+        <div class="book-inner">
+          <div class="book-front"><img src="b6.PNG" alt="Book 6"></div>
+          <div class="book-back">
+            <div class="back-content">
+              <img src="b6.PNG" alt="Book 6 Back">
+              <a href="https://online.fliphtml5.com/kttya/efsj/index.html#p=1" target="_blank" class="read-button">📖 Read</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-container">
+
+ <!-- Contact Section -->
+    <div class="footer-section">
+      <h4>Contact & Support</h4>
+      <p><strong>Phone Support:</strong><br>
+         +60 11‑69994225 (Miss Nurfadzlina)<br>
+         +60 17‑762 8175 (Miss Yang Inshirah)<br>
+         +60 13‑437 0763 (Miss Fatin Hanani)</p>
+      <p><strong>Email:</strong> 
+        <a href="mailto:shereadss25@gmail.com">shereadss25@gmail.com</a></p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="feedback.html">Contact</a></li>
+       <li><a href="help&FAQ.html">Help & FAQ</a></li>
+        </ul>
+    </div>
+
+    <!-- Library Resources -->
+    <div class="footer-section">
+      <h4>Library Resources</h4>
+      <ul>
+        <li><a href="account.html">My Account</a></li>
+        <li><a href="https://fliphtml5.com/bookcase/iulqv/">E‑Resources</a></li>
+      </ul>
+    </div>
+
+    <!-- Social Media -->
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <div class="social-links">
+        <a href="https://www.instagram.com/shereadss25" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
+        </a>
+        <a href="https://www.tiktok.com/@shereadss25" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/3046/3046120.png" alt="TikTok">
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 SheReads • All rights reserved.</p>
+  </div>
+</footer>
+
+
+
+<!-- Scripts -->
+<script>
+  const quotes = [
+  "“Empowered women empower women.”",
+  "“She believed she could, so she did.”",
+  "“Smart women learn from everything and everyone.”",
+  "“Behind every successful woman is herself.”",
+  "“Strong women lift each other up.”",
+  "“A girl should be two things: who and what she wants.” – Coco Chanel",
+  "“There is no limit to what we, as women, can accomplish.” – Michelle Obama",
+  "“Nevertheless, she persisted.”",
+  "“I am deliberate and afraid of nothing.” – Audre Lorde",
+  "“You don’t have to play masculine to be a strong woman.” – Mary Elizabeth Winstead",
+  "“Well-behaved women seldom make history.” – Laurel Thatcher Ulrich",
+  "“The most courageous act is still to think for yourself. Aloud.” – Coco Chanel",
+  "“Femininity is not weakness. It’s power.”",
+  "“A woman with a voice is, by definition, a strong woman.” – Melinda Gates",
+  "“Your silence will not protect you.” – Audre Lorde",
+  "“Do not wait for someone else to come and speak for you. It’s you who can change the world.” – Malala Yousafzai",
+  "“I am no longer accepting the things I cannot change. I am changing the things I cannot accept.” – Angela Davis",
+  "“Be the woman who fixes another woman’s crown without telling the world it was crooked.”",
+  "“The strongest action for a woman is to love herself, be herself, and shine among those who never believed she could.”",
+  "“Success is only meaningful and enjoyable if it feels like your own.” – Michelle Obama",
+  "“Be fearless in the pursuit of what sets your soul on fire.”",
+  "“I can and I will. Watch me.”",
+  "“You are more powerful than you know; you are beautiful just as you are.” – Melissa Etheridge",
+  "“Power's not given to you. You have to take it.” – Beyoncé",
+  "“Women belong in all places where decisions are being made.” – Ruth Bader Ginsburg",
+  "“You educate a man; you educate a man. You educate a woman; you educate a generation.” – Brigham Young",
+  "“Don’t let anyone speak for you, and don’t rely on others to fight for you.” – Michelle Obama",
+  "“Be the heroine of your life, not the victim.” – Nora Ephron",
+  "“The most alluring thing a woman can have is confidence.” – Beyoncé",
+  "“There is nothing stronger than a broken woman who has rebuilt herself.” – Hannah Gadsby",
+  "“No one can make you feel inferior without your consent.” – Eleanor Roosevelt",
+  "“The best protection any woman can have is courage.” – Elizabeth Cady Stanton",
+  "“I raise up my voice – not so I can shout, but so that those without a voice can be heard.” – Malala Yousafzai",
+  "“To tell a woman everything she cannot do is to tell her what she can.” – Spanish Proverb",
+  "“Sometimes it takes balls to be a woman.” – Elizabeth Cook",
+  "“A woman is unstoppable after she realizes she deserves better.”",
+  "“Beauty begins the moment you decide to be yourself.” – Coco Chanel",
+  "“Life is tough, my darling, but so are you.” – Stephanie Bennett-Henry",
+  "“Own who you are.”",
+  "“Every woman’s success should be an inspiration to another. We’re strongest when we cheer each other on.” – Serena Williams",
+  "“Be bold, be brave, be you.”"
+];
+  let i = 0;
+  const quoteBox = document.getElementById("quoteBox");
+  setInterval(() => {
+    i = (i + 1) % quotes.length;
+    quoteBox.textContent = quotes[i];
+  }, 5000);
+
+  function logoutUser() {
+    alert("You have logged out.");
+    window.location.href = "index.html";
+  }
+</script>
+
+<!-- Chatbox -->
+<script type="text/javascript">
+(function(d, m){
+  var kommunicateSettings = {
+    "appId":"3c0d5a7568c772044ebac44a04cd65c2",
+    "popupWidget":true,
+    "automaticChatOpenOnNavigation":true
+  };
+  var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+  s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+  var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+  window.kommunicate = m; m._globals = kommunicateSettings;
+})(document, window.kommunicate || {});
+
+// Show or hide the back to top button
+window.onscroll = function() {
+  const btn = document.getElementById("backToTopBtn");
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+};
+
+// Scroll to top function
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.addEventListener("load", () => {
+  const container = document.getElementById("butterfly-container");
+  const butterflyImage = "butterfly.png"; // Replace with your butterfly icon
+
+     for (let i = 0; i < 15; i++) {
+      const butterfly = document.createElement("img");
+      butterfly.src = butterflyImage;
+      butterfly.classList.add("butterfly");
+      butterfly.style.position = "absolute";
+      butterfly.style.top = Math.random() * 100 + "px";
+      butterfly.style.left = Math.random() * window.innerWidth + "px";
+      butterfly.style.animation = "fly 5s linear forwards";
+      butterfly.style.animationDelay = Math.random() * 2 + "s";
+      butterfly.style.transform = `scale(${Math.random() * 0.6 + 0.4})`;
+      container.appendChild(butterfly);
+    }
+
+    setTimeout(() => {
+      container.remove();
+    }, 5000); // Remove after 5 seconds
+  });
+</script>
+
+
+</body>
+</html>
+

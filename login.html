@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SheReads | Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #fff0f5, #ffe6f0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background-color: #ffffff;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(204, 43, 94, 0.2);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .form-container h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 36px;
+      color: #cc2b5e;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin: 15px 0 5px;
+      text-align: left;
+      color: #d6336c;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ffb6c1;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    .btn-submit {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(to right, #cc2b5e, #e75480);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(to left, #cc2b5e, #e75480);
+    }
+
+    @media (max-width: 768px) {
+  /* FORM CONTAINER */
+  .form-container {
+    width: 90% !important;
+    margin: 30px auto !important;
+    padding: 20px !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    background-color: #fff0f5;
+  }
+
+  .form-container h2 {
+    font-size: 24px;
+    text-align: center;
+    color: #cc2b5e;
+  }
+
+  label {
+    font-size: 14px;
+    margin-top: 10px;
+    display: block;
+    color: #cc2b5e;
+    font-weight: bold;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  .btn-submit {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    font-size: 16px;
+    background: linear-gradient(to right, #e75480, #cc2b5e);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .btn-submit:hover {
+    background: #cc2b5e;
+  }
+
+  /* Adjust spacing below fixed topnav */
+  body {
+    padding-top: 90px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Welcome Back 💕</h2>
+    <form onsubmit="loginUser(event)">
+      <label>Email</label>
+      <input type="email" id="loginEmail" required />
+      <label>Password</label>
+      <input type="password" id="loginPassword" required />
+      <button type="submit" class="btn-submit">Login</button>
+    </form>
+    <script>
+  document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const username = document.getElementById("usernameInput").value;
+    if (username) {
+      localStorage.setItem("username", username);
+      window.location.href = "home.html"; 
+    }
+  });
+</script>
+
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBoUkNp9JcEUAoaV7VWD7SjP4KPzfo4j0U",
+      authDomain: "feminotica-13cd4.firebaseapp.com",
+      projectId: "feminotica-13cd4",
+      storageBucket: "feminotica-13cd4.appspot.com",
+      messagingSenderId: "437837732756",
+      appId: "1:437837732756:web:6049319df4cecddeb44d81"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function loginUser(e) {
+      e.preventDefault();
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => window.location.href = "home.html")
+        .catch(err => alert(err.message));
+    }
+  </script>
+</script>
+
+
+</body>
+</html>

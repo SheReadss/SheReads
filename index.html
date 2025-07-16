@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SheReads | Welcome</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff5f9;
+      color: #333;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: url('header.jpg') center center / cover no-repeat;
+      padding:  200px 20px 130px;
+    }
+
+.logo {
+  width: 250px;
+  height: 250px;
+  margin: 20 auto 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #cc2b5e;
+  box-shadow: 0 0 30px #e75480;
+  animation: logo-glow 2s infinite alternate;
+}
+
+
+@keyframes logo-glow {
+  from {
+    box-shadow: 0 0 10px #cc2b5e;
+  }
+  to {
+    box-shadow: 0 0 35px #ff99cc, 0 0 55px #e75480;
+  }
+}
+
+    p {
+      font-size: 24px;
+      color: #ffe6f0;
+      text-shadow: 1px 1px 2px #cc2b5e;
+      margin: 20px auto;
+      max-width: 90%;
+    }
+
+    .cta-buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .cta-button {
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-weight: bold;
+      background: linear-gradient(to right, #e75480, #cc2b5e);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+
+    .cta-button:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      background: #6e0235;
+      color: #f2e9f0;
+      font-size: 14px;
+      text-align: center;
+      padding: 20px;
+      margin-top: auto;
+    }
+
+    /* Responsive Design */
+   @media (max-width: 768px) {
+  .logo {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+      p {
+        font-size: 16px;
+        margin-top: 15px;
+      }
+
+      .cta-button {
+        font-size: 14px;
+        padding: 10px 24px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      footer {
+        font-size: 12px;
+      }
+  
+  </style>
+</head>
+<body>
+
+  <header>
+  <!-- Bigger Glowing circular logo -->
+  <img src="logo.jpg" alt="SheReads Logo" class="logo">
+  <p>Smart Women Start Here—Sign In to Learn, Grow, and Lead!</p>
+  <div class="cta-buttons">
+    <a href="login.html" class="cta-button">Login</a>
+    <a href="signup.html" class="cta-button">Sign Up</a>
+  </div>
+</header>
+
+  <footer>
+    &copy; 2025 SheReads • All rights reserved.
+  </footer>
+
+  <script>
+    // Redirect if already logged in
+    const username = localStorage.getItem("username");
+    if (username) {
+      window.location.href = "home.html";
+    }
+  </script>
+
+</body>
+</html>
+

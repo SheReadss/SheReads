@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SheReads | Help & FAQ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff5f9;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main {
+      flex: 1;
+      padding-bottom: 40px;
+    }
+
+    .topnav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to right, #ffe6f0, #ffd6e8);
+      padding: 12px 30px;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .brand img {
+      height: 36px;
+      width: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #cc2b5e;
+    }
+
+    .site-name {
+      font-family: 'Great Vibes', cursive;
+      font-size: 24px;
+      color: #cc2b5e;
+      font-weight: bold;
+    }
+
+    .topnav a, .dropbtn {
+      text-decoration: none;
+      color: #e75480;
+      font-weight: bold;
+      font-size: 16px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #fff0f5;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      z-index: 1001;
+      min-width: 180px;
+      text-align: left;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px 16px;
+      color: #cc2b5e;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ffe6f0;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .user-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #cc2b5e;
+    }
+
+    .logout-btn {
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(to right, #e75480, #cc2b5e);
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+    }
+
+    header {
+      background: url('header.jpg') center/cover no-repeat;
+      padding: 100px 20px 60px;
+      text-align: center;
+      color: white;
+      margin-top: 60px;
+    }
+
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 50px;
+      text-shadow: 1px 1px 0 #cc2b5e, 2px 2px 10px #ff99cc;
+    }
+
+    header p {
+      font-size: 18px;
+      color: #66042b;
+      margin-top: 10px;
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .faq-item {
+      background: #fff0f5;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(204, 43, 94, 0.1);
+    }
+
+    .faq-item h3 {
+      margin: 0 0 10px;
+      color: #cc2b5e;
+      font-size: 20px;
+    }
+
+    .faq-item p {
+      margin: 0;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .site-footer {
+      background: #6e0235;
+      color: #f2e9f0;
+      padding: 20px;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 14px;
+      width: 100%;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      max-width: 1200px;
+      margin: auto;
+      gap: 20px;
+    }
+
+    .footer-section {
+      flex: 1 1 200px;
+    }
+
+    .footer-section h4 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #ff99cc;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 6px;
+    }
+
+    .footer-section a {
+      color: #f2e9f0;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: #ff99cc;
+    }
+
+    .footer-social {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: center;
+      flex: 1 1 120px;
+    }
+
+    .footer-social h4 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: #ff99cc;
+      text-align: center;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .social-links a img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #ff99cc;
+      background-color: #fff0f5;
+      padding: 6px;
+      transition: transform 0.3s;
+    }
+
+    .social-links a img:hover {
+      transform: scale(1.1);
+    }
+
+    .footer-bottom {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 12px;
+      border-top: 1px solid #a80a6c;
+      padding-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 36px;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .footer-social {
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<!-- Back to Top Button -->
+<button onclick="scrollToTop()" id="backToTopBtn" title="Go to top">↑</button>
+<body>
+
+  <!-- Navigation -->
+  <div class="topnav">
+    <div class="nav-left">
+      <a href="home.html" class="brand">
+        <img src="logo.jpg" alt="SheReads Logo">
+        <span class="site-name">SheReads</span>
+      </a>
+      <a href="home.html">Home</a>
+      <div class="dropdown">
+        <button class="dropbtn">About Us ▾</button>
+        <div class="dropdown-content">
+          <a href="about.html">About SheReads</a>
+          <a href="team.html">Our Team</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Services ▾</button>
+        <div class="dropdown-content">
+          <a href="https://fliphtml5.com/bookcase/iulqv/" target="_blank">E-Resources</a>
+         <a href="http://10.162.16.124:8081/" target="_blank">Koha Web-OPAC</a>
+        <a href="http://10.162.16.120:80/" target="_blank">EPrints Repository</a>
+          <a href="https://www.ncbi.nlm.nih.gov/pmc/">Other Resources</a>
+        </div>
+      </div>
+      <a href="feedback.html">Contact Us</a>
+      <a href="help&FAQ.html">Help & FAQ</a>
+    </div>
+    <div class="nav-right">
+      <a href="account.html" title="My Account">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Account" class="user-icon">
+      </a>
+      <button class="logout-btn" onclick="logoutUser()">Logout</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <header>
+      <h1>Help & FAQ</h1>
+      <p>Your questions answered – all in one place.</p>
+    </header>
+
+    <div class="faq-container">
+      <div class="faq-item">
+        <h3>1. How do I sign up for SheReads?</h3>
+        <p>Click the "Sign Up" button at the top right corner and fill in your details to create an account.</p>
+      </div>
+      <div class="faq-item">
+        <h3>2. Is SheReads free to use?</h3>
+        <p>Yes! All the digital resources and services provided by SheReads are free and accessible after logging in.</p>
+      </div>
+      <div class="faq-item">
+        <h3>3. How can I access eBooks?</h3>
+        <p>Go to the “Services” menu and click on “eBooks”. You'll be redirected to our digital bookshelf to start reading instantly.</p>
+      </div>
+      <div class="faq-item">
+        <h3>4. What is Koha Web-OPAC?</h3>
+        <p>Koha is our integrated online catalog system where you can browse our digital library collection.</p>
+      </div>
+      <div class="faq-item">
+        <h3>5. Who can I contact for support?</h3>
+        <p>You can reach out via <a href="mailto:shereadss25@gmail.com">shereadss25@gmail.com</a> or visit the Contact Us page.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Contact & Support</h4>
+        <p><strong>Phone:</strong><br>
+       +60 11‑69994225 (Fadzlina)<br>
+       +60 17‑762 8175 (Yang)<br>
+       +60 13‑437 0763 (Hanani)</p>
+        <p><strong>Email:</strong> <a href="mailto:shereadss25@gmail.com">shereadss25@gmail.com</a></p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="feedback.html">Contact</a></li>
+          <li><a href="help&FAQ.html">Help & FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Library Resources</h4>
+        <ul>
+          <li><a href="account.html">My Account</a></li>
+          <li><a href="https://fliphtml5.com/bookcase/iulqv/">E‑Resources</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="https://www.instagram.com/shereadss25" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
+          </a>
+          <a href="https://www.tiktok.com/@shereadss25" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046120.png" alt="TikTok">
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 SheReads • All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Firebase Auth -->
+  <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-auth.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBoUkNp9JcEUAoaV7VWD7SjP4KPzfo4j0U",
+      authDomain: "feminotica-13cd4.firebaseapp.com",
+      projectId: "feminotica-13cd4",
+      storageBucket: "feminotica-13cd4.appspot.com",
+      messagingSenderId: "437837732756",
+      appId: "1:437837732756:web:6049319df4cecddeb44d81"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+// Show or hide the back to top button
+window.onscroll = function() {
+  const btn = document.getElementById("backToTopBtn");
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+};
+</script>
+
+<!-- Chatbox -->
+<script type="text/javascript">
+(function(d, m){
+  var kommunicateSettings = {
+    "appId":"3c0d5a7568c772044ebac44a04cd65c2",
+    "popupWidget":true,
+    "automaticChatOpenOnNavigation":true
+  };
+  var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+  s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+  var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+  window.kommunicate = m; m._globals = kommunicateSettings;
+})(document, window.kommunicate || {});
+
+// Scroll to top function
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+    auth.onAuthStateChanged((user) => {
+      if (!user) {
+        window.location.href = "index.html";
+      }
+    });
+
+    function logoutUser() {
+      alert("You have logged out.");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
